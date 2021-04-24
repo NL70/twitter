@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Log in</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/">Main Page</a>
+      <a href="/library">Library</a>
+    </nav>
+    <main>
+      <form action="/login" method="post">
+        <br />
+        <br />
+        <br />
+        <div class="login-container">
+          <label class="login-label" for="email"><b>Email</b></label>
+          <input type="email" placeholder="Enter Email" name="email" required />
+          <label class="login-label" for="password"><b>Password</b></label>
+          <input
+            type="password"
+            placeholder="Enter Password"
+            name="password"
+            required
+          />
+
+          <button type="submit" class="login-button">Login</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>

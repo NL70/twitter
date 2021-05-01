@@ -1,1 +1,93 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  color: rgba(0, 0, 0, 0.705);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+#content {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+header {
+  position: relative;
+  flex-grow: 0.18;
+}
+
+nav {
+  background-color: white;
+  border-right: 1px solid #e25e0d;
+  min-height: 100vh;
+  position: fixed;
+  margin: 0px;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 15px;
+  font-size: 18px;
+  display: block;
+}
+
+a img {
+  padding-right: 10px;
+}
+
+nav a:hover {
+  background-color: rgb(226, 94, 13, 0.5);
+}
+
+nav a:active {
+  color: white;
+}
+
+#user-area {
+  border-style: solid;
+  border-width: 1px;
+  flex-direction: row;
+  padding: 10px;
+  left: 100%;
+}
+
+#user-area img {
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+}
+
+#user-area p {
+  left: 100px;
+  top: 100px;
+}
+
+#tweet {
+  display: block;
+  border-style: solid;
+  border-width: 1px;
+  padding-right: 20px;
+  box-shadow: 2px 2px 2px grey;
+}
+
+#tweet img {
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  text-align: left;
+  display: inline;
+}
+#username {
+  text-align: left;
+  display: inline;
+  bottom: 100%;
+}

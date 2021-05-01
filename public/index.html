@@ -6,6 +6,46 @@
     <title>NotTwitter</title>
   </head>
   <body>
+    <div id="content">
+      <header>
+        <nav>
+          <a href="/"><img src="images/plus.svg" width="18px" />NotTweets</a>
+          <a href="/"><img src="images/user.svg" width="18px" /> Profile</a>
+          <a href="/"
+            ><img src="images/setting-lines.svg" width="18px" />Settings</a
+          >
+        </nav>
+      </header>
+
+      <main>
+        <div id="user-area">
+          <img
+            src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+          />
+          <p>Name</p>
+        </div>
+
+        <form action="/login" method="post">
+          <label class="login-label" for="tweet"><b>Email</b></label>
+          <textarea
+            id="tweet"
+            name="tweet"
+            rows="1"
+            cols="30"
+            placeholder="Make a NotTweet!"
+          ></textarea>
+          <button type="submit" class="tweet-button">Tweet</button>
+        </form>
+        <!-- <div id="tweet">
+          <img
+            src="https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png"
+          />
+          <p id="username">Name</p>
+          <p>This is a tweet</p>
+          <p></p>
+        </div> -->
+      </main>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

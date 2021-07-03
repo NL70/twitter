@@ -11,15 +11,22 @@
       <a href="/library">Library</a>
     </nav>
     <main>
-      <form action="/login" method="post">
+      <form id="login-form">
         <br />
         <br />
         <br />
         <div class="login-container">
-          <label class="login-label" for="email"><b>Email</b></label>
-          <input type="email" placeholder="Enter Email" name="email" required />
+          <label class="login-label" for="username"><b>Username</b></label>
+          <input
+            id="username"
+            type="text"
+            placeholder="Enter username"
+            name="username"
+            required
+          />
           <label class="login-label" for="password"><b>Password</b></label>
           <input
+            id="password"
             type="password"
             placeholder="Enter Password"
             name="password"
@@ -30,5 +37,6 @@
         </div>
       </form>
     </main>
+    <script src="loginScript.js"></script>
   </body>
 </html>

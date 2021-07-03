@@ -14,15 +14,26 @@ body {
   justify-content: stretch;
 }
 
+a {
+  text-decoration: none;
+}
 #content {
   display: flex;
-  align-items: stretch;
-  min-height: 100vh;
 }
 
-header {
-  position: relative;
-  flex-grow: 0.18;
+header nav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 175px;
+}
+
+main {
+  display: flex;
+  flex: 3;
+  margin-left: 175px;
+  align-items: flex-start;
 }
 
 nav {
@@ -34,7 +45,6 @@ nav {
 }
 
 nav a {
-  text-decoration: none;
   padding: 15px;
   font-size: 18px;
   display: block;
@@ -52,42 +62,103 @@ nav a:active {
   color: white;
 }
 
-#user-area {
-  border-style: solid;
-  border-width: 1px;
-  flex-direction: row;
+#tweet-list-wrapper {
+  display: flex;
+  flex: 3;
+  justify-content: center;
+}
+
+#user-card {
+  display: flex;
   padding: 10px;
-  left: 100%;
-}
-
-#user-area img {
-  padding: 5px;
-  width: 40px;
-  height: 40px;
-}
-
-#user-area p {
-  left: 100px;
-  top: 100px;
-}
-
-#tweet {
-  display: block;
   border-style: solid;
+  padding: 15px 45px;
   border-width: 1px;
-  padding-right: 20px;
-  box-shadow: 2px 2px 2px grey;
+  border-right: white;
+  border-top: white;
+  font-size: 20px;
+  flex: 1;
+  align-items: center;
 }
 
-#tweet img {
-  padding: 5px;
-  width: 40px;
-  height: 40px;
-  text-align: left;
-  display: inline;
+#user-card a {
+  display: block;
 }
-#username {
-  text-align: left;
-  display: inline;
-  bottom: 100%;
+
+#tweet-list {
+  margin-top: 150px;
+  max-width: 400px;
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+}
+
+#tweet-card {
+  display: flex;
+  padding: 10px;
+  border-style: solid;
+  padding: 15px 45px;
+  border-width: 1px;
+  font-size: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-direction: column;
+}
+
+#tweet-card p {
+  margin-top: 10px;
+  display: block;
+}
+
+#date {
+  font-size: 15px;
+  color: #9c9c9c;
+}
+
+form {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  align-items: center;
+}
+textarea {
+  padding: 10px;
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+#tweet-button {
+  display: block;
+  border: none;
+  padding: 5px;
+  margin: 0;
+  text-decoration: none;
+  border-style: solid;
+  border-color: #e25e0d;
+  background: #e25e0d;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background 250ms ease-in-out, transform 150ms ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin-left: 5px;
+  border-radius: 5px;
+}
+
+button:hover,
+button:focus {
+  background: #d88451;
+  border-color: #d88451;
+}
+
+button:focus {
+  outline: 1px solid #fff;
+  outline-offset: -4px;
+}
+
+button:active {
+  transform: scale(0.99);
 }

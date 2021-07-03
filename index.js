@@ -36,6 +36,7 @@ if (process.env.NODE_ENV !== "production") {
 app.use((req, res, next) => {
   const authToken = req.cookies["AuthToken"];
   req.user = authTokens[authToken];
+  console.log(authToken)
   next();
 });
 
@@ -49,9 +50,6 @@ const generateAuthToken = () => {
   return crypto.randomBytes(30).toString("hex");
 };
 
-// Static files
-app.use(express.static("public"));
-
 // app.use("/keyboardsmash", keyboardSmashRouter);
 // app.use("/keyboardsmashlibrary", libraryRouter);
 
@@ -64,6 +62,102 @@ const publicPath = path.join(__dirname, "public");
 //     res.sendFile(publicPath + "/login.html");
 //   }
 // });
+
+// get tweet
+app.get("/tweets", (req, res) => {
+  pool.query(
+    "SELECT * FROM tweets ORDER BY datecreated DESC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+
+      res.status(200).json({ data: results.rows });
+    }
+  );
+});
+// post tweet
+app.post("/tweets", (req, res) => {
+  const { contents, creator_id } = req.body;
+  
+  if (contents && contents.length <= 280) {
+    pool.query(
+      "INSERT INTO tweets (content, creator_id) VALUES ($1, $2) RETURNING *",
+      [contents, creator_id],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        res.status(201).json({ data: results.rows[0] });
+      }
+    );
+  }
+});
+
+// get user
+app.get("/users", (req, res) => {
+  pool.query("SELECT * FROM users", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    res.status(200).json({ data: results.rows });
+  });
+});
+
+// post user
+
+app.post("/users", (req, res, next) => {
+  const { username, password } = req.body;
+  const databasePassword = getHashedPassword(password);
+  pool.query(
+    "SELECT * FROM users WHERE username = $1",
+    [username],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      const user = results.rows[0];
+      if (user) {
+        if (user.password === databasePassword) {
+          const authToken = generateAuthToken();
+          authTokens[authToken] = user;
+          res.cookie("AuthToken", authToken);
+          res.redirect("/");
+        } else {
+          res.status(400).json({ data: "Incorrect password" });
+        }
+      } else {
+        pool.query(
+          "INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *",
+          [username, databasePassword],
+          (error, results) => {
+            if (error) {
+              throw error;
+            }
+            const user = results.rows[0];
+            const authToken = generateAuthToken();
+            authTokens[authToken] = user;
+            res.cookie("AuthToken", authToken);
+            res.redirect("/");
+          }
+        );
+      }
+    }
+  );
+});
+
+// Static files
+app.use(express.static(__dirname + "/public"));
+
+app.use("/", (req, res, next) => {
+  console.log("|" + req.user + "|");
+  if (req.user) {
+    res.sendFile(publicPath + "/index.html");
+  } else {
+    res.sendFile(publicPath + "/login.html");
+  }
+  next()
+});
 
 // Start server
 app.listen(process.env.PORT || 4000, () => {
